@@ -56,7 +56,7 @@ variance #control
 
 std_devi <- sqrt(variance) #standard deviation
 std_devi #control
-sd(y) #simple way of R für std. deviation
+
 
 #CI creation/calculation
 z90 <- qnorm((1-0.90)/2, lower.tail = FALSE) #assigning and calculating the margin. For both tails use /2

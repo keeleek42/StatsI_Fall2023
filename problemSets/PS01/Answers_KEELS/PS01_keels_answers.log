@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.8)  23 SEP 2023 13:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.8)  24 SEP 2023 22:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -932,12 +932,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 97--98
 
  []
 
-[2] (./PS01_keels_answers.R) [3]
+(./PS01_keels_answers.R [2]) [3]
 Underfull \hbox (badness 10000) in paragraph at lines 144--145
 
  []
 
-<plot2.pdf, id=86, 505.89pt x 505.89pt>
+<plot2.pdf, id=72, 505.89pt x 505.89pt>
 File: plot2.pdf Graphic file (type pdf)
 <use plot2.pdf>
 Package pdftex.def Info: plot2.pdf  used on input line 146.
@@ -952,7 +952,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 152--154
 
  []
 
-<plot1.pdf, id=97, 505.89pt x 505.89pt>
+<plot1.pdf, id=83, 505.89pt x 505.89pt>
 File: plot1.pdf Graphic file (type pdf)
 <use plot1.pdf>
 Package pdftex.def Info: plot1.pdf  used on input line 157.
@@ -963,7 +963,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 155--158
  []
 
 (./PS01_keels_answers.R [5 <./plot1.pdf>])
-<plot3.pdf, id=124, 505.89pt x 505.89pt>
+<plot3.pdf, id=110, 505.89pt x 505.89pt>
 File: plot3.pdf Graphic file (type pdf)
 <use plot3.pdf>
 Package pdftex.def Info: plot3.pdf  used on input line 166.
@@ -1008,7 +1008,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 168--170
  []
 
 (./PS01_keels_answers.R [6 <./plot3.pdf>])
-<plot4.pdf, id=152, 505.89pt x 505.89pt>
+<plot4.pdf, id=138, 505.89pt x 505.89pt>
 File: plot4.pdf Graphic file (type pdf)
 <use plot4.pdf>
 Package pdftex.def Info: plot4.pdf  used on input line 177.
@@ -1018,7 +1018,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 177--179
 
  []
 
-<plot5.pdf, id=153, 505.89pt x 505.89pt>
+[7 <./plot4.pdf>]
+<plot5.pdf, id=168, 505.89pt x 505.89pt>
 File: plot5.pdf Graphic file (type pdf)
 <use plot5.pdf>
 Package pdftex.def Info: plot5.pdf  used on input line 180.
@@ -1028,7 +1029,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
  []
 
-[7 <./plot4.pdf>] [8 <./plot5.pdf>]
+[8 <./plot5.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 190--191
 
  []
@@ -1070,10 +1071,10 @@ Package rerunfilecheck Info: File `PS01_keels_answers.out' has not changed.
 ### semi simple group (level 1) entered at line 90 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 27244 strings out of 476025
- 479297 string characters out of 5790018
- 2173388 words of memory out of 5000000
- 47061 multiletter control sequences out of 15000+600000
+ 27233 strings out of 476025
+ 479128 string characters out of 5790018
+ 2034388 words of memory out of 5000000
+ 47063 multiletter control sequences out of 15000+600000
  523380 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,6n,89p,3250b,2232s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1089,10 +1090,10 @@ fb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pf
 b></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb
 ></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><
 /usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on PS01_keels_answers.pdf (9 pages, 227419 bytes).
+Output written on PS01_keels_answers.pdf (9 pages, 225476 bytes).
 PDF statistics:
- 292 PDF objects out of 1000 (max. 8388607)
- 244 compressed objects within 3 object streams
- 132 named destinations out of 1000 (max. 500000)
+ 277 PDF objects out of 1000 (max. 8388607)
+ 229 compressed objects within 3 object streams
+ 119 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

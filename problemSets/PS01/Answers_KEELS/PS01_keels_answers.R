@@ -38,7 +38,7 @@ lapply(c(),  pkgTest)
 # Problem 1
 #####################
 y <- c(105, 69, 86, 100, 82, 111, 104, 110, 87, 108, 87, 90, 94, 113, 112, 98, 80, 97, 95, 111, 114, 89, 95, 126, 98)
-
+length(y)
 mean.y <- mean(y) #used to calculate the mean IQ of y
 print(mean.y) #control
 
@@ -57,30 +57,18 @@ variance #control
 std_devi <- sqrt(variance) #standard deviation
 std_devi #control
 
+#CI for n<30 with t-distribution (qnorm if n>30)
+st_error <- qt(0.950, df = length(y) - 1) * (sd(y) / sqrt(length(y)))
+print(st_error)
 
-#CI creation/calculation
-z90 <- qnorm((1-0.90)/2, lower.tail = FALSE) #assigning and calculating the margin. For both tails use /2
-CI_lower_95 <- mean(y) - (z90*(sd(y)/sqrt(length(y)))) #creating the lower and subseq. the upper CI with margin and standard dev.
-CI_upper_95 <- mean(y) + (z90*(sd(y)/sqrt(length(y))))
-CI90 <- c(CI_lower_95, CI_upper_95) #putting it into one c() for easy print
-
-# control-test with hannah frankes precise code adjusted for 90% CI
-CI_lower_95_test <- qnorm(0.05, 
-                    mean = mean(y), 
-                    sd = (sd(y)/sqrt(length(y))))
-
-# Upper bound, 95 confidence level
-CI_upper_95_test <- qnorm(0.95,
-                    mean = mean(y),
-                    sd = (sd(y)/sqrt(length(y))))
-
-CI90_test <- c(CI_lower_95_test, CI_upper_95_test)
-print(CI90_test)
+CI_lower <- mean(y) - st_error
+CI_higher <- mean(y) + st_error
 
 #Solution
-mean(y)
-print(CI90)
-#SOLUTION 1.1: 90% of the true mean of the schools student IQ falls between 94.13283 and 102.74717.
+print(c(CI_lower, mean(y), CI_higher))
+
+
+#SOLUTION 1.1: 90% of the true mean of the schools student IQ falls between 93.95993 and 102.92007.
 
 
 #Hypothesis Testing
@@ -102,7 +90,6 @@ print(P_value)
 
 t_test <- t.test(y, mu = 100, alternative = 'greater') #control: doing a checkup with t.test function
 t_test #gives same p-value
-
 
 #Solution: #P-Value is 0.7215383 and therefore greater than a=0.05. As the P-Value is bigger than 0.05 we accept the Null-Hypotheses.
 

@@ -91,7 +91,7 @@ A school counselor was curious about the average of IQ of the students in her sc
 	\item Find a 90\% confidence interval for the average student IQ in the school.\\
 	
 \textbf{Solution 1.1}: 90\% of the true mean of the schools student IQ falls between 93.95993 and 102.92007.\\
-As N < 30, I opted for a t.distribution and therefore the qt function to find the standard error and subsequently the confidence interval. In the R code I calculated the length, standard deviation and sum of error, and standard error by hand. The fast way to find the confidence interval can be found below. 
+As N smaller than 30, I opted for a t.distribution and therefore the qt function to find the standard error and subsequently the confidence interval. In the R code I calculated the length, standard deviation and sum of error, and standard error by hand. The fast way to find the confidence interval can be found below. 
 
 \begin{verbatim}
 	st_error <- qt(0.950, df = length(y) - 1) * (sd(y) / sqrt(length(y)))

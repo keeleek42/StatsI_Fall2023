@@ -42,6 +42,8 @@ length(y)
 mean.y <- mean(y) #used to calculate the mean IQ of y
 print(mean.y) #control
 
+sd(y)
+
 sum_errors <- NULL #creating sum of errors
 for(i in 1:length(y))
 {sum_errors[i] <- y[i] - mean.y}
@@ -59,11 +61,13 @@ std_devi #control
 
 #CI for n<30 with t-distribution (qnorm if n>30)
 st_error <- qt(0.950, df = length(y) - 1) * (sd(y) / sqrt(length(y)))
-print(st_error)
+print(st_error) 
 
 CI_lower <- mean(y) - st_error
 CI_higher <- mean(y) + st_error
 
+t_test <- t.test(y)
+print(t_test, confidence = 90)
 #Solution
 print(c(CI_lower, mean(y), CI_higher))
 
@@ -89,7 +93,7 @@ P_value <- pt(t_stat, df = length(y)-1, lower.tail = FALSE)
 print(P_value)
 
 t_test <- t.test(y, mu = 100, alternative = 'greater') #control: doing a checkup with t.test function
-t_test #gives same p-value
+print(t_test) #gives same p-value
 
 #Solution: #P-Value is 0.7215383 and therefore greater than a=0.05. As the P-Value is bigger than 0.05 we accept the Null-Hypotheses.
 
@@ -150,7 +154,7 @@ for(i in 1:4) #objects of the section of expenditure of region. Of 4 Regions
 
 str(Region1) #looking at the structure of the regions to test and subset afterwards correctly
 
-mean(Region1$Y)  #accessing and calculating the mean of Region 1 Line Y
+mean(Region1$Y)
 mean(Region2$Y)
 mean(Region3$Y)
 mean(Region4$Y)

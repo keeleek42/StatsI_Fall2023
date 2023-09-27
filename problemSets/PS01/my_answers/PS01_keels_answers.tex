@@ -159,7 +159,6 @@ sample estimates: mean of x     98.44
 \vspace{.5cm}
 \noindent Explore the \texttt{expenditure} data set and import data into \texttt{R}.
 \vspace{.5cm}
-\lstinputlisting[language=R, firstline=54, lastline=54]{PS01_keels_answers.R}  
 \vspace{.5cm}
 \begin{itemize}
 
@@ -180,7 +179,7 @@ It would also be possible to plot each combination seperately but it was too tir
 Exmpaple of single plotting:\\
 \includegraphics[width=.50\textwidth]{plot1.pdf} \\
 
-The code for the 4 by 4 plot:
+The code for the 4 by 4 plot with corr.:
 \begin{verbatim}
 	pdf("plot2.pdf")ggpairs(expenditure[,2:5]) +  
 	ggtitle("All plotted against each other with corr.")

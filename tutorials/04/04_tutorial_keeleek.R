@@ -5,7 +5,7 @@
 getwd()
 
 # Set working directory 
-setwd("/Users/hannahfrank/StatsI_Fall2023_prep")
+setwd("/Users/sire/Documents/GitHub/StatsI_Fall2023")
 getwd()
 
 #############################
@@ -34,9 +34,13 @@ chisq.test(df_s$genre,
 sprintf("%.20f",1.097e-12)
 
 # Step 1: Assumptions
+#categorial it is
 # Step 2: Hypotheses
+#Ho genre rating are independent / HA genre rating are dependant.
 # Step 3: Test statistic
+#62 is quite large
 # Step 4: P-value
+#we reject H0 as 0.000000000. we can support HA that movie genre and rating are dependant.
 # Step 5: Conclusion
 
 ### Look at standardized residuals ###
@@ -81,16 +85,16 @@ cor(df$income,df$edu)
 
 # Add to scatter plot
 text(1200, 7, sprintf("Correlation=%s", round(cor(df$income,df$edu),4)))
+# 4 at the end is for rounding
 
 # Improve visualization and save
-png(file="tutorials/04/scatter_plot.png")
 plot(df$income,
      df$edu,
      xlab="Monthly net income (in Euro)",
      ylab="University level education (in years)",
      main="The Relationship between education and income") 
 text(1200, 8, sprintf("Correlation=%s", round(cor(df$income,df$edu),4)))
-dev.off()
+
 
 # t-test for the correlation coefficient
 cor.test(df$income, df$edu)
@@ -99,16 +103,23 @@ cor.test(df$income, df$edu)
 sprintf("%.20f",7.52e-07)
 
 # Step 1: Assumptions
+#continous
 # Step 2: Hypotheses
+#H0. there is no correlation / HA there is correlation
 # Step 3: Test statistic
+#
 # Step 4: P-value
 # Step 5: Conclusion
+#Ho rejected as evidence 0.000. We find evidence in favor for income and education that there is a positive correlation.
 
 # (b.) Bivariate regression  -----
 
 # Fit linear regression model
 summary(lm(df$income~df$edu))
 summary(lm(income~edu, data=df))
+#intercept: where slope hits 0 on Y
+#edu is the slope
+#*** show the PValue rating
 
 # Save model as object
 model <- lm(income~edu, data=df)

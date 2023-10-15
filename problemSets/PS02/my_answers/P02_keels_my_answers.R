@@ -77,7 +77,7 @@ print(chi_sqrd)
 p_chi_sqrd <- pchisq(chi_sqrd, df = (ncol(x) - 1) * (nrow(x) - 1), lower.tail=FALSE)
 print(p_chi_sqrd)
 
-chi_test <- chisq.test(x)
+chi_test <- chisq.test(x) #checking the easy way whether my value from above is correct
 print(chi_test)
 
 ####### Task 1c)
@@ -98,8 +98,6 @@ View(df) #getting an overview
 
 boxplot(water ~ female, data = df, main = "res. vs. no-res.", ylim = c())
 #the outliers make the boxplot rather unreadable therefore the ylim will be set
-
-#check for effect plots in r
 
 pdf("ps02plot1.pdf")
 boxplot(water ~ female, data = df, main = "res. vs. no-res.", ylim = c(0, 60))

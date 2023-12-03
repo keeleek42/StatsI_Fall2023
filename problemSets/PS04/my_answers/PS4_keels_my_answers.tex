@@ -180,11 +180,16 @@ I used the prediction equation and used a simple calculation:
 
 \begin{verbatim}
 prestige1000 <- (21.1422589 + (0.0031709 * 1000) + (37.7812800*1)
-- (0.0023257 * 1 * 1000))
+							- (0.0023257 * 1 * 1000))
 print(prestige1000)  
+
+prestige0 <- 21.1422589 + (0.0031709) + (37.7812800*1)               
+					- (0.0023257 * 1)
+print(prestige1000 - prestige0)
+
 \end{verbatim}
 
-A \$1,000 income increase for professionals would on average result in \textbf{59.76874} for $\hat{Y}$ prestige score.
+A \$1,000 income increase for professionals would on average result in \textbf{59.76874} for $\hat{Y}$ prestige score. The marginal effect would therefore be \textbf{0.8420291}.
 	
 	\vspace{.5cm}
 	

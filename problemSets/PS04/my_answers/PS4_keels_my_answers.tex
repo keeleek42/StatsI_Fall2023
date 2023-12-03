@@ -1,0 +1,290 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+
+\title{Problem Set 4}
+\date{Due: December 3, 2023}
+\author{Stefan Keel \\
+	Applied Stats/Quant Methods 1}
+
+
+\begin{document}
+	\maketitle
+	\section*{Instructions}
+	\begin{itemize}
+		\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
+		\item Your homework should be submitted electronically on GitHub.
+		\item This problem set is due before 23:59 on Sunday December 3, 2023. No late assignments will be accepted.
+	\end{itemize}
+
+
+
+	\vspace{.5cm}
+\section*{Question 1: Economics}
+\vspace{.25cm}
+\noindent 	
+In this question, use the \texttt{prestige} dataset in the \texttt{car} library. First, run the following commands:
+
+\begin{verbatim}
+install.packages(car)
+library(car)
+data(Prestige)
+help(Prestige)
+\end{verbatim} 
+
+
+\noindent We would like to study whether individuals with higher levels of income have more prestigious jobs. Moreover, we would like to study whether professionals have more prestigious jobs than blue and white collar workers.
+
+\newpage
+\begin{enumerate}
+	
+	\item [(a)]
+	Create a new variable \texttt{professional} by recoding the variable \texttt{type} so that professionals are coded as $1$, and blue and white collar workers are coded as $0$ (Hint: \texttt{ifelse}).\\
+	
+	First I conducted a visual analysis of the dataset for a general overview. Afterwards I applied a line of code to check for missing values in the column "type" - which indicated that there are some missing values. I then dropped those lines as it is not in my knowledge to assign them to "professional" or "blue collar worker" status. To code these two levels $(0, 1)$ . I then used the other line of code to code it $1$ if "prof" for "professional" and $0$ for all other.
+	
+	\begin{verbatim}
+		print(any(is.na(Prestige$type)))
+		Prestige <- Prestige[!is.na(Prestige$type), ] 
+		
+		Prestige$professional <- ifelse(Prestige$type == "prof", 1, 0)
+	\end{verbatim}
+	
+	This created the following (head) of the dataset:
+\begin{verbatim}
+                     education income women prestige census type professional
+gov.administrators      13.11  12351 11.16     68.8   1113 prof            1
+general.managers        12.26  25879  4.02     69.1   1130 prof            1
+accountants             12.77   9271 15.70     63.4   1171 prof            1
+purchasing.officers     11.42   8865  9.11     56.8   1175 prof            1
+chemists                14.62   8403 11.68     73.5   2111 prof            1
+physicists              15.64  11030  5.13     77.6   2113 prof            1
+\end{verbatim}
+
+	\vspace{.2cm}
+	
+	
+	\item [(b)]
+	Run a linear model with \texttt{prestige} as an outcome and \texttt{income}, \texttt{professional}, and the interaction of the two as predictors (Note: this is a continuous $\times$ dummy interaction.)
+	
+	I used this code to run the linear model:
+	
+	\begin{verbatim}
+		model1 <- lm(prestige ~ income + professional + income*professional,
+		              data = Prestige)
+	\end{verbatim}
+
+\newpage	
+	
+	Which provided me with this summary:
+\begin{table}[!htbp] \centering   \caption{}   \label{} \begin{tabular}{@{\extracolsep{5pt}}lc} \\[-1.8ex]\hline \hline \\[-1.8ex]  & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ \cline{2-2} \\[-1.8ex] & prestige \\ \hline \\[-1.8ex]  income & 0.003$^{***}$ \\   & (0.0005) \\   & \\  professional & 37.781$^{***}$ \\   & (4.248) \\   & \\  income:professional & $-$0.002$^{***}$ \\   & (0.001) \\   & \\  Constant & 21.142$^{***}$ \\   & (2.804) \\   & \\ \hline \\[-1.8ex] Observations & 98 \\ R$^{2}$ & 0.787 \\ Adjusted R$^{2}$ & 0.780 \\ Residual Std. Error & 8.012 (df = 94) \\ F Statistic & 115.878$^{***}$ (df = 3; 94) \\ \hline \hline \\[-1.8ex] \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ \end{tabular} \end{table} 
+
+	\vspace{.1cm}
+	\item [(c)]
+	Write the prediction equation based on the result.
+	
+\begin{center}
+$\hat{Y}$ = 21.1422589 + 0.0031709$X_1$ + 37.7812800$D_1$ - 0.0023257$X_1*D_1$
+\end{center}
+
+
+
+	\item [(d)]
+	Interpret the coefficient for \texttt{income}.\\
+	
+- The average prestige score for not-receiving-income (Income=0) blue collar workers is 21.142 score points.\\
+- The average prestige score for not-receiving-income (Income=0) professionals is 58.92354 score points.\\
+- For blue collar workers, with every additional 1 USD of average yearly income, the  prestige score increases on average by 0.0031709 scale points = Income effect for blue colar workers.\\
+
+\newpage
+
+- For professionals, with every additional 1 USD of average yearly income, the average prestige score increases by 0.00084528 = Income effect for professionals.\\
+- For not-receiving-income professionals, the prestige score is 37.7812800 score points higher, in comparison to not-receiving-income blue collar workers.\\
+
+
+The coefficient for the variable \textbf{INCOME is 0.0031709} and shows a positive association with the outcome variable (prestige).
+	
+
+	\item [(e)]
+	Interpret the coefficient for \texttt{professional}.\\
+	
+The coefficient for the variable \textbf{PROFESSIONAL is 37.7812800} and also shows a positive association with the outcome variable (PRESTIGE). In switching from "blue collar worker" to "professional" (moving from 0 to 1) (an increase of one unit) in the variable PROFESSIONAL results in an increase of 37.7812800 units in the estimated/predicted value of PRESTIGE $\hat{Y}$).\\
+
+- The average prestige score for not-receiving-income (Income=0) professionals is on average 58.92354 score points.\\
+- For professionals, with every additional 1 USD of average yearly income, the average prestige score increases by 0.00084528 = Income effect for professionals.\\
+- For not-receiving-income professionals, the prestige score is on average 37.7812800 score points higher, in comparison to not-receiving-income blue collar workers.\\
+	
+	\item [(f)]
+	What is the effect of a \$1,000 increase in income on prestige score for professional occupations? In other words, we are interested in the marginal effect of income when the variable \texttt{professional} takes the value of $1$. Calculate the change in $\hat{y}$ associated with a \$1,000 increase in income based on your answer for (c).\\
+	
+I used the prediction equation and used a simple calculation:
+
+\begin{verbatim}
+prestige1000 <- (21.1422589 + (0.0031709 * 1000) + (37.7812800*1)
+- (0.0023257 * 1 * 1000))
+print(prestige1000)  
+\end{verbatim}
+
+A \$1,000 income increase for professionals would on average result in \textbf{59.76874} for $\hat{Y}$ prestige score.
+	
+	\vspace{.5cm}
+	
+\newpage
+
+	
+	\item [(g)]
+	What is the effect of changing one's occupations from non-professional to professional when her income is \$6,000? We are interested in the marginal effect of professional jobs when the variable \texttt{income} takes the value of $6,000$. Calculate the change in $\hat{y}$ based on your answer for (c).\\
+	
+	I used the prediction equation and used a simple calculation:
+	\begin{verbatim}
+		prestige6000_0 <- (21.1422589 + (0.0031709 * 6000) + (37.7812800*0)                    
+		- (0.0023257 * 0))
+
+		prestige6000_p <- (21.1422589 + (0.0031709 * 6000) + (37.7812800*1)                       
+		- (0.0023257 * 1 * 6000))
+		
+		difference <- prestige6000_p - prestige6000_0
+	\end{verbatim}
+
+The predicted prestige score for professionals with income of \$6,000 would be 63.99474 whereas the prestige score with the same income for blue collar workers would, on average, be 40.16766.
+\textbf{blue collar workers have on average a 23.82708 lower} prestige score than professionals with same income of \$6,000.
+	
+\end{enumerate}
+
+\newpage
+
+\section*{Question 2: Political Science}
+\vspace{.25cm}
+\noindent 	Researchers are interested in learning the effect of all of those yard signs on voting preferences.\footnote{Donald P. Green, Jonathan	S. Krasno, Alexander Coppock, Benjamin D. Farrer,	Brandon Lenoir, Joshua N. Zingher. 2016. ``The effects of lawn signs on vote outcomes: Results from four randomized field experiments.'' Electoral Studies 41: 143-150. } Working with a campaign in Fairfax County, Virginia, 131 precincts were randomly divided into a treatment and control group. In 30 precincts, signs were posted around the precinct that read, ``For Sale: Terry McAuliffe. Don't Sellout Virgina on November 5.'' \\
+
+Below is the result of a regression with two variables and a constant.  The dependent variable is the proportion of the vote that went to McAuliff's opponent Ken Cuccinelli. The first variable indicates whether a precinct was randomly assigned to have the sign against McAuliffe posted. The second variable indicates
+a precinct that was adjacent to a precinct in the treatment group (since people in those precincts might be exposed to the signs).  \\
+
+\vspace{.5cm}
+\begin{table}[!htbp]
+	\centering 
+	\textbf{Impact of lawn signs on vote share}\\
+	\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+		\\[-1.8ex] 
+		\hline \\[-1.8ex]
+		Precinct assigned lawn signs  (n=30)  & 0.042\\
+		& (0.016) \\
+		Precinct adjacent to lawn signs (n=76) & 0.042 \\
+		&  (0.013) \\
+		Constant  & 0.302\\
+		& (0.011)
+		\\
+		\hline \\
+	\end{tabular}\\
+	\footnotesize{\textit{Notes:} $R^2$=0.094, N=131}
+\end{table}
+
+\vspace{.5cm}
+\begin{enumerate}
+	\item [(a)] Use the results from a linear regression to determine whether having these yard signs in a precinct affects vote share (e.g., conduct a hypothesis test with $\alpha = .05$).
+	
+H0 = Yard signs in precincts do not affect outcome // B2 = 0\\
+HA = Yard signs in precincts affect outcome // B2 not 0
+
+I did the T Statistic by dividing the variability between groups by the variability within groups. From there I calculated the P Value. I opted for T statistic for 2a and 2b because I do not know the population standard deviation and therefore T seems to be more appropriate.
+
+\newpage
+
+\begin{verbatim}
+	t1 <- (0.042 - 0) / 0.016
+	=2.265
+	
+	p1 <- 2 * pt(t1, 128, lower.tail=FALSE)
+\end{verbatim}
+
+The P value of 0.00972002 is smaller than 0.05  therefore there is evidence to reject HO. \textbf{There are indicators that signs on lawns may affect vote share.}
+	
+	\item [(b)]  Use the results to determine whether being
+	next to precincts with these yard signs affects vote
+	share (e.g., conduct a hypothesis test with $\alpha = .05$).
+	
+H0 = Yard signs in adjacent precincts do not affect outcome // B2 = 0\\
+HA = Yard signs in adjacent precincts affect outcome // B2 not 0
+
+\begin{verbatim}
+t2 = (0.042 - 0) / 0.013
+
+p2 <- 2 * pt(t2, 128, lower.tail=FALSE)
+\end{verbatim}
+
+The P value of 0.00156946 is below 0.05 an therefore there is evidence to reject HO. \textbf{There are indicators that signs on lawns in adjacent precinct may affect vote share.}
+	
+\newpage
+
+	\item [(c)] Interpret the coefficient for the constant term substantively.\\
+	
+	The intercept indicates the predicted outcome for voteshare if the other predictors (treatment) are 0. Therefore, the average predicted outcome for voteshare is 0.302 without signs.
+	\vspace{2cm}
+	
+	\item [(d)] Evaluate the model fit for this regression.  What does this	tell us about the importance of yard signs versus other factors that are not modeled?\\
+	
+	The $R^2$ of 0.094 indicates that only $9.4\%$ of the variability in the dependent variable is explained by the independent variables, whereas $90.6\%$ of the variability is not accounted for by the included variables. There might be other factors that are not included in the model, that could  explain the variability in voteshare. 
+	
+\end{enumerate}  
+
+
+\end{document}

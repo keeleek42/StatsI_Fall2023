@@ -112,26 +112,42 @@
 				 		\vspace{.25cm}
 				 		
 				 				\lstinputlisting[language=R, firstline=40, lastline=41]{PS4_answerKey.R} 
-		\begin{verbatim}
-		Call:
-		lm(formula = prestige ~ income * professional, data = Prestige)
-		Residuals:
-		Min      1Q  Median      3Q     Max 
-		-14.852  -5.332  -1.272   4.658  29.932 
-		Coefficients:
-		Estimate Std. Error t value Pr(>|t|)    
-		(Intercept)         21.1422589  2.8044261   7.539 2.93e-11 ***
-		income               0.0031709  0.0004993   6.351 7.55e-09 ***
-		professional        37.7812800  4.2482744   8.893 4.14e-14 ***
-		income:professional -0.0023257  0.0005675  -4.098 8.83e-05 ***
-		---
-		Signif. codes:  ***0.001 **0.01 *0.05
-		Residual standard error: 8.012 on 94 degrees of freedom
-		(4 observations deleted due to missingness)
-		Multiple R-squared:  0.7872,	Adjusted R-squared:  0.7804 
-		F-statistic: 115.9 on 3 and 94 DF,  p-value: < 2.2e-16
-		\end{verbatim}
-		\newpage
+\begin{table}[b!] \centering 
+  \caption{Results of interactive regression model.} 
+  \label{} 
+  				\begin{adjustbox}{max width=.55\textwidth}
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] & prestige \\ 
+\hline \\[-1.8ex] 
+ income & 0.003$^{***}$ \\ 
+  & (0.0005) \\ 
+  & \\ 
+ professional1 & 37.781$^{***}$ \\ 
+  & (4.248) \\ 
+  & \\ 
+ income:professional1 & $-$0.002$^{***}$ \\ 
+  & (0.001) \\ 
+  & \\ 
+ Constant & 21.142$^{***}$ \\ 
+  & (2.804) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 98 \\ 
+R$^{2}$ & 0.787 \\ 
+Adjusted R$^{2}$ & 0.780 \\ 
+Residual Std. Error & 8.012 (df = 94) \\ 
+F Statistic & 115.878$^{***}$ (df = 3; 94) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+				\end{adjustbox}
+\end{table} 
+	%	\newpage
 		\item [(c)]
 		\textit{Write the prediction equation based on the result.}
 		
